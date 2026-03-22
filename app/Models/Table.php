@@ -12,4 +12,9 @@ class Table extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    public function reservations()
+    {
+        return $this->belongsToMany(Reservation::class);
+    }
 }

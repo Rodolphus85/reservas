@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('reservation_table', function (Blueprint $table) {
+
             $table->id();
-            $table->foreignId('location_id')->constrained();
-            $table->unsignedInteger('number');
-            $table->unsignedInteger('guest_count');
-            $table->timestamps();
+
+            $table->foreignId('reservation_id')->constrained();
+            $table->foreignId('table_id')->constrained();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('reservation_table');
     }
 };

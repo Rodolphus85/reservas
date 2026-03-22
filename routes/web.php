@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Mesas
 Route::get('/mesas', [TableController::class, 'index'])->name('tables.index');
 
 Route::post('/mesas', [TableController::class, 'store'])->name('tables.store');
@@ -20,4 +21,6 @@ Route::get('/mesas/crear', [TableController::class, 'create'])->name('tables.cre
 
 Route::get('/mesas/{id}/editar', [TableController::class, 'edit'])->name('tables.edit');
 
-Route::get('/reservas', [ReservationController::class, 'index']);
+
+// Reservaciones
+Route::post('/reservas', [ReservationController::class, 'create'])->name('reservations.create');;
