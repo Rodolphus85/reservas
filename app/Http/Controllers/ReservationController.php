@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
+
+use App\Services\ReservationService;
 use App\Validators\ReservationValidator;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,8 +15,11 @@ class ReservationController extends Controller
         return view('reservations.create');
     }
 
-    public function store(Request $request, ReservationValidator $validator)
-    {
+    public function store(
+        Request $request, 
+        ReservationValidator $validator, 
+        ReservationService $reservationService
+    ) {
         $validatedData = $request->validate([
             'reservation_date' => ['required', 'date'],
             'start_time' => ['required', 'date_format:H:i'],
@@ -25,18 +28,10 @@ class ReservationController extends Controller
 
         $validator->validate($validatedData);
 
-        $startTime = Carbon::parse($validatedData['start_time']);
-        $endTime = $startTime->copy()->addHours(2);
+        $reservationService->createReservation($validatedData);
 
-        Reservation::create([
-            'reservation_date' => $validatedData['reservation_date'],
-            'start_time' => $validatedData['start_time'],
-            'guest_count' => $validatedData['guest_count'],
-            'user_id' => 1, // TO DO asignar usuario correspondiente
-            'end_time' => $endTime->format('H:i:s')
-        ]);
-
-        return redirect()->route('reservations.create')
+        return redirect()
+            ->route('reservations.create')
             ->with('success', 'Reserva realizada.')
         ;
     }
