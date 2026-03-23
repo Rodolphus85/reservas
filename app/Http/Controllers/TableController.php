@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class TableController extends Controller
@@ -21,11 +22,6 @@ class TableController extends Controller
         return view('tables.index', compact('tables'));
     }
 
-    /*public function show(): View
-    {
-        return view('tables.show');
-    }*/
-
     public function create(): View
     {
         $locationOptions = Location::pluck('id', 'code');
@@ -37,7 +33,11 @@ class TableController extends Controller
     {
         $validatedData = $request->validate([
             'location' => 'required',
-            'number' => 'required',
+            'number' => [
+                'required',
+                 Rule::unique('tables')
+                    ->where('location_id', $request->location_id)
+            ],
             'guest_count' => 'required',
         ]);
 

@@ -18,13 +18,23 @@ class TableSeeder extends Seeder
         $locations = Location::all();
         $tableCount = 10;
 
+        $usedNumbers = [];
+
         for ($i = 1; $i <= $tableCount; $i++) {
+
+            $location = $locations->random()->id;
+
+            do {
+                $number = rand(1, 20);
+            } while (isset($usedNumbers[$location][$number]));
+
+            $usedNumbers[$location][$number] = true;
+
             DB::table('tables')->insert([
-                'location_id' => $locations->random()->id,
-                'number' => rand(1, 20),
+                'location_id' => $location,
+                'number' => $number,
                 'guest_count' => rand(2, 8)
             ]);
-
         }
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedInteger('number');
             $table->unsignedInteger('guest_count');
             $table->timestamps();
+
+            $table->unique(['number', 'location_id']);
         });
     }
 
