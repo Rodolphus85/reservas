@@ -35,8 +35,9 @@ class TableController extends Controller
             'location' => 'required',
             'number' => [
                 'required',
-                 Rule::unique('tables')
-                    ->where('location_id', $request->location_id)
+                Rule::unique('tables')->where(function ($query) use ($request) {
+                    return $query->where('location_id', $request->location);
+                })
             ],
             'guest_count' => 'required',
         ]);
@@ -65,7 +66,12 @@ class TableController extends Controller
 
         $validatedData = $request->validate([
             'location' => 'required',
-            'number' => 'required',
+            'number' => [
+                'required',
+                Rule::unique('tables')->where(function ($query) use ($request) {
+                    return $query->where('location_id', $request->location);
+                })
+            ],
             'guest_count' => 'required',
         ]);
 
