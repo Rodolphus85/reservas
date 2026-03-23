@@ -57,3 +57,68 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Reservas
+
+Sistema de reservas desarrollado en Laravel con PHP 8.2 y MySQL.
+
+## Requisitos
+
+- PHP 8.2
+- Composer
+- Base de datos MySQL
+
+
+## Instalación
+
+Clona el repositorio
+
+```bash
+git clone git@github.com:Rodolphus85/reservas.git
+cd reservas
+```
+
+Instala las dependencias de PHP
+
+```bash
+composer install
+```
+
+Copia el archivo de entorno y configura variables
+
+```bash
+cp .env.example .env
+```
+
+## Base de datos y fixtures
+
+1. Crea la base de datos según la configuración en `.env`.
+2. Corre migraciones:
+
+```bash
+php artisan migrate
+```
+
+```bash
+php artisan db:seed
+```
+
+Levanta el servidor local de Laravel
+
+```bash
+php artisan serve
+```
+
+## Estado actual
+
+- Por ahora hay un único usuario de prueba preconfigurado.
+- No hay registro de usuarios ni autenticación avanzada implementada.
+
+## Próximos pasos / Roadmap
+
+- Implementar registro y login de usuarios.
+- Agregar roles y permisos para diferentes niveles de acceso.
+- Cambio de opciones de menu
+- Dockerización para facilitar despliegue y entorno de desarrollo
+
+  

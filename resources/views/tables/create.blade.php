@@ -13,8 +13,8 @@
     </div>
     @endif
 
-    <div class="cards">
-        <div class="card card-center">
+    <div class="cards row justify-content-center">
+        <div class="card card-center col-md-6">
             <div class="card-body">
                 <h1>Nueva Mesa</h1>
 

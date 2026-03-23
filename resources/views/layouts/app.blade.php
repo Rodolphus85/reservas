@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-secondary">
+<body class="d-flex flex-column min-vh-100 bg-success">
     <header class="p-3 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -19,12 +19,23 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    <li><a href="{{ route('reservations.create') }}" 
+                            class="nav-link px-2 text-secondary"
+                        >Home</a>
+                    </li>
+                    <li><a href="{{ route('tables.create') }}" 
+                            class="nav-link px-2 text-white"
+                        >Mesas</a>
+                    </li>
+                    <li><a href="{{ route('tables.index') }}" 
+                            class="nav-link px-2 text-white"
+                        >Listado Mesas</a>
+                    </li>
+                    <li><a href="{{ route('reservations.index') }}"  class="nav-link px-2 text-white"
+                        >Listado Reservas</a>
+                    </li>
                 </ul>
-
+                <h1 class="me-lg-auto">Reservas</h1>
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <input type="search" class="form-control form-control-dark" placeholder="Search..."
                         aria-label="Search">
@@ -46,12 +57,12 @@
 
     <footer class="footer mt-auto border-top">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            <li class="nav-item"><a href="{{ route('reservations.create') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{{ route('tables.create') }}" class="nav-link px-2 text-body-secondary">Mesas</a></li>
+            <li class="nav-item"><a href="{{ route('tables.index') }}" class="nav-link px-2 text-body-secondary">Listado Mesas</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Listado Reservas</a></li>
         </ul>
-        <p class="text-center text-body-secondary">© {{ date('Y') }} Company, Inc</p>
+        <p class="text-center text-body-secondary">© {{ date('Y') }} Reservas</p>
     </footer>
 </body>
 

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Reservas</h1>
+        <h1>Reservas realizadas</h1>
     </div>
     <table class="table table-striped">
         <thead>

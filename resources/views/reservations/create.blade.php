@@ -20,8 +20,8 @@
         </div>
     @endif
 
-    <div class="cards">
-        <div class="card card-center">
+    <div class="cards row justify-content-center">
+        <div class="card card-center col-md-6">
             <div class="card-body">
                 <h1>Nueva Reserva</h1>
 
@@ -29,19 +29,22 @@
                     @csrf
                     <div class="mb-3">
                         <label for="reservation_date" class="form-label">Fecha</label>
-                        <input type="date" name="reservation_date" class="form-control"
+                        <input type="date" id="reservation_date" name="reservation_date" 
+                            class="form-control" 
                             value="{{ old('reservation_date') }}"
                         >
                     </div>
                     <div class="mb-3">
                         <label for="start_time" class="form-label">Hora</label>
-                        <input type="time" name="start_time" class="form-control"
+                        <input type="time" id="start_time" name="start_time" 
+                            class="form-control"
                             value="{{ old('start_time') }}"
                         >
                     </div>
                     <div class="mb-3">
                         <label for="guest_count" class="form-label">Cantidad de personas</label>
-                        <input type="number" name="guest_count" class="form-control"
+                        <input type="number" id="guest_count" name="guest_count" 
+                            class="form-control"
                             value="{{ old('guest_count') }}"
                         >
                     </div>
