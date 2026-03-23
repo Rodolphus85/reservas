@@ -23,4 +23,6 @@ Route::get('/mesas/{id}/editar', [TableController::class, 'edit'])->name('tables
 
 
 // Reservaciones
-Route::post('/reservas', [ReservationController::class, 'create'])->name('reservations.create');;
+Route::get('/reservas/crear', [ReservationController::class, 'create'])->name('reservations.create');
+
+Route::post('/reservas', [ReservationController::class, 'store'])->name('reservations.store');

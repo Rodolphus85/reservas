@@ -30,16 +30,12 @@
                     </div>
                     <div class="form-group">
                         <label for="number">Número de mesa</label>
-                        <input type="text" class="form-control" id="number" name="number" placeholder="Número">
+                        <input type="number" class="form-control" id="number" name="number" placeholder="Número">
                     </div>
                     <div class="form-group">
                         <label for="guest_count">Cantidad de personas</label>
-                        <input type="text" class="form-control" id="guest_count" name="guest_count"
+                        <input type="number" class="form-control" id="guest_count" name="guest_count"
                             placeholder="Cantidad">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Crear</button>
                     <a class="btn btn-warning" href="{{ route('tables.index') }}">Cancelar</a>

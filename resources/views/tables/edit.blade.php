@@ -36,14 +36,14 @@
                     </div>
                     <div class="form-group">
                         <label for="number">Número de mesa</label>
-                        <input type="text" class="form-control" id="number" name="number" 
+                        <input type="number" class="form-control" id="number" name="number" 
                           placeholder="Número"
                           value="{{ old('number', $table->number ?? '') }}"
                         >
                     </div>
                     <div class="form-group">
                         <label for="guest_count">Cantidad de personas</label>
-                        <input type="text" class="form-control" id="guest_count" name="guest_count"
+                        <input type="number" class="form-control" id="guest_count" name="guest_count"
                           placeholder="Cantidad"
                           value="{{ old('guest_count', $table->guest_count ?? '') }}"
                         >
