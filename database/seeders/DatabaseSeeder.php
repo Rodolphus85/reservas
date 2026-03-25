@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'password' => bcrypt('admin'),
             'email' => 'admin@example.com',
+            'is_admin' => true
         ]);
     }
 }

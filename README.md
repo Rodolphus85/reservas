@@ -109,16 +109,13 @@ Levanta el servidor local de Laravel
 php artisan serve
 ```
 
-## Estado actual
+## Aclaraciones
 
-- Por ahora hay un único usuario de prueba preconfigurado.
-- No hay registro de usuarios ni autenticación avanzada implementada.
+- Al correr los seeders, se crea un único usuario administrador con las siguentes credenciales:
+    .email: admin@example.com
+    .password: admin
 
 ## Próximos pasos / Roadmap
 
-- Implementar registro y login de usuarios.
-- Agregar roles y permisos para diferentes niveles de acceso.
-- Cambio de opciones de menu
+- Agregar roles para diferentes niveles de acceso.
 - Dockerización para facilitar despliegue y entorno de desarrollo
-
-  

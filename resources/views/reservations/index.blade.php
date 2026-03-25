@@ -14,6 +14,7 @@
                 <th scope="col"># Reserva</th>
                 <th scope="col">Ubicación</th>
                 <th scope="col"># Mesa</th>
+                <th scope="col">Reservada por</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                 <td>{{ $reservation->id }}</td>
                 <td>{{ $reservation->code }}</td>
                 <td>{{ $reservation->number }}</td>
+                <td>{{ $reservation->user_name }}</td>
             </tr>                
             @endforeach
         </tbody>

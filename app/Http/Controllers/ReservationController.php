@@ -17,7 +17,10 @@ class ReservationController extends Controller
             ->join('reservation_table AS rt', 'r.id', '=', 'rt.reservation_id')
             ->join('tables AS t', 'rt.table_id', '=', 't.id')
             ->join('locations as l', 't.location_id', '=', 'l.id')
-            ->select('r.reservation_date', 'r.start_time', 'r.id', 'l.code', 't.number')
+            ->join('users as u', 'r.user_id', '=', 'u.id')
+            ->select('r.reservation_date', 'r.start_time', 'r.id', 'l.code', 't.number', 
+                'u.name as user_name'
+            )
             ->orderBy('r.reservation_date')
             ->orderBy('r.start_time')
             ->get()

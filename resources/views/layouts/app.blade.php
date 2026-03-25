@@ -12,11 +12,13 @@
     <header class="p-3 bg-dark text-white">
         <div class="container">
             <div class="d-flex align-items-center position-relative">
+                @auth
                 <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 text-start">
                     <li><a href="{{ route('reservations.create') }}" 
                             class="nav-link px-2 text-secondary"
                         >Home</a>
                     </li>
+                    @can('admin')
                     <li><a href="{{ route('tables.create') }}" 
                             class="nav-link px-2 text-white"
                         >Mesas</a>
@@ -28,7 +30,9 @@
                     <li><a href="{{ route('reservations.index') }}"  class="nav-link px-2 text-white"
                         >Listado Reservas</a>
                     </li>
+                    @endcan
                 </ul>
+                @endauth
                 <div class="position-absolute start-50 translate-middle-x text-center">
                     <h1>Reservas</h1>
                 </div>
@@ -36,7 +40,7 @@
                 <div class="ms-auto">
                 @auth
                     <div class="d-flex justify-content-center align-items-center">
-                        <span class="me-2">
+                        <span class="me-2 text-warning">
                             {{ auth()->user()->name }}
                         </span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -45,8 +49,8 @@
                         </form>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Iniciar Sesión</a>
-                    <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
+                    <a href="{{ route('auth.login') }}" class="btn btn-outline-light me-2">Iniciar Sesión</a>
+                    <a href="{{ route('auth.register') }}" class="btn btn-warning">Registrarse</a>
                 @endauth                    
                 </div>
             </div>
@@ -71,10 +75,22 @@
 
     <footer class="footer mt-auto border-top">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="{{ route('reservations.create') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="{{ route('tables.create') }}" class="nav-link px-2 text-body-secondary">Mesas</a></li>
-            <li class="nav-item"><a href="{{ route('tables.index') }}" class="nav-link px-2 text-body-secondary">Listado Mesas</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Listado Reservas</a></li>
+            @auth
+                <li class="nav-item"><a href="{{ route('reservations.create') }}" 
+                    class="nav-link px-2 text-body-secondary">Home</a>
+                </li>
+                @can('admin')
+                <li class="nav-item"><a href="{{ route('tables.create') }}" 
+                    class="nav-link px-2 text-body-secondary">Mesas</a>
+                </li>
+                <li class="nav-item"><a href="{{ route('tables.index') }}" 
+                    class="nav-link px-2 text-body-secondary">Listado Mesas</a>
+                </li>
+                <li class="nav-item"><a href="#" 
+                    class="nav-link px-2 text-body-secondary">Listado Reservas</a>
+                </li>
+                @endcan
+            @endauth
         </ul>
         <p class="text-center text-body-secondary">© {{ date('Y') }} Reservas</p>
     </footer>
