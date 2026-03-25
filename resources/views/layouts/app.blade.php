@@ -11,14 +11,8 @@
 <body class="d-flex flex-column min-vh-100 bg-success">
     <header class="p-3 bg-dark text-white">
         <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                </a>
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <div class="d-flex align-items-center position-relative">
+                <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 text-start">
                     <li><a href="{{ route('reservations.create') }}" 
                             class="nav-link px-2 text-secondary"
                         >Home</a>
@@ -35,15 +29,25 @@
                         >Listado Reservas</a>
                     </li>
                 </ul>
-                <h1 class="me-lg-auto">Reservas</h1>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..."
-                        aria-label="Search">
-                </form>
+                <div class="position-absolute start-50 translate-middle-x text-center">
+                    <h1>Reservas</h1>
+                </div>
 
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                <div class="ms-auto">
+                @auth
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="me-2">
+                            {{ auth()->user()->name }}
+                        </span>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light me-2">Cerrar Sesión</button>
+                        </form>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Iniciar Sesión</a>
+                    <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
+                @endauth                    
                 </div>
             </div>
         </div>
@@ -51,6 +55,16 @@
 
     <main class="content">
         <div class="container">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             @yield('content')
         </div>
     </main>

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Reservation;
 use App\Services\AvailabilityService;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -45,7 +46,7 @@ class ReservationService
                 'reservation_date' => $data['reservation_date'],
                 'start_time' => $data['start_time'],
                 'guest_count' => $data['guest_count'],
-                'user_id' => 1,
+                'user_id' => Auth::user()->id,
                 'end_time' => $endTime->format('H:i:s')
             ]);
 

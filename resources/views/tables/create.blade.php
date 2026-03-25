@@ -3,15 +3,6 @@
 @section('title', 'Creación de Mesa')
 
 @section('content')
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
     <div class="cards row justify-content-center">
         <div class="card card-center col-md-6">
