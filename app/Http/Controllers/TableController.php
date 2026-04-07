@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TableRequest;
 use App\Models\Location;
 use App\Models\Table;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class TableController extends Controller
@@ -29,29 +29,18 @@ class TableController extends Controller
         return view('tables.create', compact('locationOptions'));
     }
 
-    public function store(Request $request)
+    public function store(TableRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'location' => 'required',
-            'number' => [
-                'required',
-                Rule::unique('tables')->where(function ($query) use ($request) {
-                    return $query->where('location_id', $request->location);
-                })
-            ],
-            'guest_count' => 'required',
-        ]);
-
         Table::create([
-            'location_id' => $validatedData['location'],
-            'number' => $validatedData['number'],
-            'guest_count' => $validatedData['guest_count']
+            'location_id' => $request->location,
+            'number' => $request->number,
+            'guest_count' => $request->guest_count,
         ]);
 
         return redirect()->route('tables.index');
     }
 
-    public function edit($id)
+    public function edit(int $id): View
     {
         $table = Table::findOrFail($id);
 
@@ -60,31 +49,20 @@ class TableController extends Controller
         return view('tables.edit', compact('table', 'locationOptions'));
     }
 
-    public function update($id, Request $request)
+    public function update(int $id, TableRequest $request): RedirectResponse
     {
         $table = Table::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'location' => 'required',
-            'number' => [
-                'required',
-                Rule::unique('tables')->where(function ($query) use ($request) {
-                    return $query->where('location_id', $request->location);
-                })
-            ],
-            'guest_count' => 'required',
-        ]);
-
         $table->update([
-            'location_id' => $validatedData['location'],
-            'number' => $validatedData['number'],
-            'guest_count' => $validatedData['guest_count'],
+            'location_id' => $request->location,
+            'number' => $request->number,
+            'guest_count' => $request->guest_count,
         ]);
 
         return redirect()->route('tables.index');
     }
 
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
         $table = Table::findOrFail($id);
         $table->delete();
